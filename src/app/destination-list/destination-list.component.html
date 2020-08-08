@@ -1,24 +1,30 @@
-<div class="container content">
+<body>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;">
+    <strong>Welcome!</strong> You should be careful when putting the <strong>image URL</strong>.
+  </div>
+  <div class="container content">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <span class="anchor" id="formLogin"></span>
-  
+
         <!-- form card login with validation feeback -->
         <div class="card card-outline-secondary">
           <div class="card-header">
-            <h3 class="mb-0">Whislist</h3>
+            <h3 class="mb-0"><img style="width: 25px;"
+                src="https://img.icons8.com/pastel-glyph/64/000000/around-the-globe--v1.png" /> My Whislist! </h3>
           </div>
           <div class="card-body">
             <form action="">
               <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter your name" #name>
+                <label for="name">Destination</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your destination..." #name>
               </div>
               <div class="form-group">
-                <label for="imagenUrl">Photo</label>
-                <input type="text" class="form-control" id="imagenUrl" placeholder="Enter the url or link..." #url>
+                <label for="imagenUrl">Image URL </label>
+                <input type="text" class="form-control" id="imagenUrl" placeholder="Example: https://wallpapercave.com/wp/wp1844656.jpg " #url>
               </div>
-              <button type="submit" class="btn btn-primary" (click)="saveDestination(name.value, url.value)">Save in your wishlist!</button>
+              <button type="submit" class="btn btn-dark" (click)="saveDestination(name.value, url.value)">Save in your
+                wishlist!</button>
             </form>
           </div>
         </div>
@@ -29,3 +35,7 @@
       <app-destination *ngFor="let destination of destinations" [destination]="destination"></app-destination>
     </div>
   </div>
+  <script language="JavaScript" type="text/javascript">
+    alert("este texto es el que modificas");
+  </script>
+</body>
