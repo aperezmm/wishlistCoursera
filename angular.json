@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "wishlistCoursera"
+    }
+  },
+  "defaultProject": "wishlistCoursera",
+  "cli": {
+    "analytics": "6284b50c-c1df-4cf9-9dd1-f4f30368aca2"
+  }
 }

@@ -9,5 +9,7 @@
       <h3>{{destination.name}}</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, consequatur esse cum quo molestiae tempore,
         ipsa vel quod blanditiis odit, facere iusto quia quas repellat quasi quisquam. Optio, voluptatum dicta?</p>
+        <a href="#" class="btn-card" (click)="goDestination()">IR!</a>
+        <span [style.display]="destination.isSelected() ? '' : 'none'"> <em> -PREFERIDO-</em></span>
      </div>
 </div>
