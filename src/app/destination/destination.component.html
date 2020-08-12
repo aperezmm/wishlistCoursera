@@ -7,8 +7,8 @@
   </div>
   <div class="card-desc">
     <h3>{{destination.name}}</h3>
-    <p>Servicios</p>
-    <em style="color: rgb(233, 108, 108);">Lo más destacado!</em>
+    <p>Services</p>
+    <em style="color: rgb(233, 108, 108);">The most outstanding!</em>
     <ul>
       <li *ngFor="let service of destination.services">
         <!-- <span>{{service}}</span> -->
@@ -18,11 +18,12 @@
         </span>
       </li>
     </ul>
-    <a href="#" class="btn-card" (click)="goDestination()">IR!</a>
+    <a href="#" class="btn-card" (click)="goDestination()">GO!</a>
     <!-- <span [style.display]="destination.isSelected() ? '' : 'none'"> <strong> -AGENDADO-</strong></span> -->
     <span *ngIf="destination.isSelected()">
-      <strong ngNonBindable>-AGENDADO-</strong>
+      <strong ngNonBindable>-SCHEDULED-</strong>
     </span>
+    <a [routerLink]="['/destination-detail']">See Detail</a>
   </div>
 </div>
 <br>
