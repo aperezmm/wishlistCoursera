@@ -18,12 +18,14 @@
         </span>
       </li>
     </ul>
-    <a href="#" class="btn-card" (click)="goDestination()">GO!</a>
+    <a [routerLink]="['/destination', destination.id]" 
+      class="btn-card" (click)="goDestination()">More details!</a>
     <!-- <span [style.display]="destination.isSelected() ? '' : 'none'"> <strong> -AGENDADO-</strong></span> -->
-    <span *ngIf="destination.isSelected()">
-      <strong ngNonBindable>-SCHEDULED-</strong>
-    </span>
-    <a [routerLink]="['/destination-detail']">See Detail</a>
+    <!--
+      <span *ngIf="destination.isSelected()">
+      <strong ngNonBindable><em>SCHEDULED</em></strong>
+    </span> -->    
+    <br>
   </div>
 </div>
 <br>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TravelDestinationModule } from '../models/travel-destination.module';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { TravelDestinationModel } from '../models/travel-destination.model';
+import { DestinationApiClient } from '../models/destination-api-client.model';
 
 @Component({
   selector: 'app-destination-list',
@@ -8,26 +9,26 @@ import { TravelDestinationModule } from '../models/travel-destination.module';
 })
 export class DestinationListComponent implements OnInit {
 
-  destinations: TravelDestinationModule[];
-  constructor() {
-    this.destinations = [];
+  @Output() onItemAdded: EventEmitter<TravelDestinationModel>;
+
+  constructor(public destinationApiClient: DestinationApiClient) {
+    this.onItemAdded = new EventEmitter();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
   }
 
   //GUARDAR EL DESTINO EN LA CARD
-  saveDestination(name:string, url:string):boolean{
-    this.destinations.push(new TravelDestinationModule(name,url));
-    //console.log(this.destinations)
-    return false; //Avoid loading the page
+  addedDestination(desti: TravelDestinationModel) {
+    this.destinationApiClient.add(desti);
+    this.onItemAdded.emit(desti);
   }
 
   //ESCOGER EL DESTINO Y DESMARCAR LOS DEMÁS. 
-  chosenDestination(dest: TravelDestinationModule){
-    this.destinations.forEach(function(x){x.setSelected(false)});
-    dest.setSelected(true); //disparamos el event
+  chosenDestination(desti: TravelDestinationModel){
+    this.destinationApiClient.getAll().forEach(x => x.setSelected(false));
+    desti.setSelected(true);
   }
 
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TravelDestinationModel } from '../models/travel-destination.model';
+import { ActivatedRoute } from '@angular/router';
+import { DestinationApiClient } from '../models/destination-api-client.model';
 
 @Component({
   selector: 'app-destination-detail',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DestinationDetailComponent implements OnInit {
 
-  constructor() { }
+  destination: TravelDestinationModel;
+
+  constructor(private route: ActivatedRoute, private destinationApiClient: DestinationApiClient) { }
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.destination = this.destinationApiClient.getById(id);
   }
 
 }

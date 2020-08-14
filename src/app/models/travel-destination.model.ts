@@ -1,12 +1,11 @@
-export class TravelDestinationModule {
-    name:string;
-    url:string;
-    private selected: boolean;
-    public services: string[];
+import { v4 as uuid} from 'uuid';
 
-    constructor(public n:string, public u:string){
-        this.name = n;
-        this.url = u;
+export class TravelDestinationModel {
+    public selected: boolean;
+    public services: string[];
+    id = uuid();
+
+    constructor(public name:string, public url:string){
         this.services = ['Turco', 'Sauna', 'Jacuzzi'];
     }
 

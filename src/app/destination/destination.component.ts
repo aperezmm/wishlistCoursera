@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostBinding, EventEmitter, Output } from '@angular/core';
-import { TravelDestinationModule } from '../models/travel-destination.module';
+import { TravelDestinationModel } from '../models/travel-destination.model';
 
 @Component({
   selector: 'app-destination',
@@ -8,11 +8,12 @@ import { TravelDestinationModule } from '../models/travel-destination.module';
 })
 export class DestinationComponent implements OnInit {
 
-  @Input() destination: TravelDestinationModule;
+  @Input() destination: TravelDestinationModel;
+  @Input("idx") position: number;
   @HostBinding('attr.class') cssClass = 'col-md-4';
-  @Output() clicked: EventEmitter<TravelDestinationModule>; //Valor de salida
+  @Output() onClicked: EventEmitter<TravelDestinationModel>; //Valor de salida
   constructor() {
-    this.clicked = new EventEmitter();
+    this.onClicked = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class DestinationComponent implements OnInit {
 
   //PARA EL EVENTO
   goDestination(){
-    this.clicked.emit(this.destination);
+    this.onClicked.emit(this.destination);
     return false;
   }
 
