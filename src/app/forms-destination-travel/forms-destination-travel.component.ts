@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TravelDestinationModel } from '../models/travel-destination.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, Form } from '@angular/forms';
 
 @Component({
   selector: 'app-forms-destination-travel',
@@ -12,12 +12,17 @@ export class FormsDestinationTravelComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<TravelDestinationModel>;
   //Inicializamos el formGroup (fg, así lo llamamos en la vista)
   fg: FormGroup;
+  minLength = 3;
 
   constructor(fb: FormBuilder) { 
     this.onItemAdded = new EventEmitter();
     this.fg = fb.group({
       //Definimos estructura del formulario
-      name: ['', Validators.required], //No debe estar vacío
+      name: ['', Validators.compose([
+        Validators.required,
+        //this.nameValidator,
+        this.nameValidatorParametrizable(this.minLength)
+      ])], //No debe estar vacío
       url: ['', Validators.required]
     });
 
@@ -43,5 +48,28 @@ export class FormsDestinationTravelComponent implements OnInit {
     this.onItemAdded.emit(dest)  
     return false;
   }
+  
+  /*
 
+  --TAMBIÉN TIENE EN CUENTA LOS CARACTERES PERO NO MUESTRA EL MENSAJE
+
+  nameValidator(control: FormControl): { [s: string]: boolean } {
+    //evalua el control: FormControl
+    const length = control.value.toString().trim().length; //Length
+    if(length > 0 && length < 3){
+      return {invalidName: true};
+    }
+    return null; //En otro caso
+  }
+  */
+
+  nameValidatorParametrizable(minLength: number): ValidatorFn {  //Contando la cantidad de caracteres
+    return (control: FormControl): { [s:string]: boolean } | null => {
+      const length = control.value.toString().trim().length; //Length
+      if(length > 0 && length < minLength ){
+        return {minLengthName: true};
+      }
+      return null //Retornamos null por defecto
+    }
+  }
 }

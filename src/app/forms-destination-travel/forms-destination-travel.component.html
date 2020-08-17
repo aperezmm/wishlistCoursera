@@ -3,7 +3,14 @@
     (ngSubmit)="saveDestination(fg.controls['name'].value, fg.controls['url'].value)">
     <div class="form-group">        
         <label for="name"><strong>Destination</strong></label>
-        <div *ngIf="!fg.controls['name'].valid"><em>- Invalid name!</em></div>
+        <!-- 
+            <div *ngIf="!fg.controls['name'].valid"><em>- Invalid name!</em></div>
+        -->
+
+        <!--
+            <div *ngIf="fg.controls['name'].hasError('invalidName')"><em>- Invalid name!</em></div>
+        -->        
+        <div *ngIf="fg.controls['name'].hasError('minLengthName')"><em>- Minimum {{minLength}} characters for name!</em></div>
         <div *ngIf="fg.controls['name'].hasError('required')"><em>- Required name!</em></div>
         <br>
         <input type="text" class="form-control" id="name" placeholder="Enter your destination..."

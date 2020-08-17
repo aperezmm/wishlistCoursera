@@ -94,6 +94,8 @@ section{
     white-space: normal;
     word-wrap: break-word;
     color: #fff;
+    display: flex;
+    justify-content: center;
 }
 .btn-card:hover {
     background: orange;
