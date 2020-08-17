@@ -1,17 +1,23 @@
 <form 
     [formGroup]="fg" 
     (ngSubmit)="saveDestination(fg.controls['name'].value, fg.controls['url'].value)">
-    <div class="form-group">
-        <label for="name">Destination</label>
+    <div class="form-group">        
+        <label for="name"><strong>Destination</strong></label>
+        <div *ngIf="!fg.controls['name'].valid"><em>- Invalid name!</em></div>
+        <div *ngIf="fg.controls['name'].hasError('required')"><em>- Required name!</em></div>
+        <br>
         <input type="text" class="form-control" id="name" placeholder="Enter your destination..."
             [formControl]="fg.controls['name']">
+            
     </div>
     <div class="form-group">
-        <label for="imagenUrl">Image URL </label>
-        <input type="text" class="form-control" id="imagenUrl"
+        <label for="url"><strong>Image URL</strong></label>
+        <div *ngIf="fg.controls['url'].hasError('required')"><em>- Required URL</em></div>
+        <br>
+        <input type="text" class="form-control" id="url"
             placeholder="Example: https://wallpapercave.com/wp/wp1844656.jpg " 
             [formControl]="fg.controls['url']">
     </div>
     <!-- Basta con ser de tipo submit -->
-    <button type="submit" class="btn btn-dark">Save in your wishlist!</button> 
+    <button type="submit" class="btn btn-dark" *ngIf="fg.valid">Save in your wishlist!</button> 
 </form>

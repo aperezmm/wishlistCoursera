@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TravelDestinationModel } from '../models/travel-destination.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forms-destination-travel',
@@ -17,8 +17,8 @@ export class FormsDestinationTravelComponent implements OnInit {
     this.onItemAdded = new EventEmitter();
     this.fg = fb.group({
       //Definimos estructura del formulario
-      name: [''],
-      url: ['']
+      name: ['', Validators.required], //No debe estar vacío
+      url: ['', Validators.required]
     });
 
 
