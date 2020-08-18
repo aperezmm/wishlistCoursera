@@ -27,7 +27,9 @@ export const initializeTravelsDestinationsState = function() {
 export enum TravelsDestinationsActionsTypes {
     //Definiendo los strings
     NEW_DESTINATION = '[Travels Destinations] NEW',
-    CHOOSEN_FAVORITE = '[Travels Destinations] FAVORITE' 
+    CHOOSEN_FAVORITE = '[Travels Destinations] FAVORITE',
+    VOTE_UP = '[Travels Destinations] VOTE UP',
+    VOTE_DOWN = '[Travels Destinations] VOTE DOWN' 
 }
 
 //Estructura de dato destino nuevo
@@ -35,6 +37,20 @@ export class NewDestinationAction implements Action {
     type = TravelsDestinationsActionsTypes.NEW_DESTINATION;
     constructor(public destination: TravelDestinationModel){
 
+    }
+}
+
+export class VoteUpAction implements Action {
+    type = TravelsDestinationsActionsTypes.VOTE_UP;
+    constructor(public destination: TravelDestinationModel){
+
+    }
+}
+
+export class VoteDownAction implements Action {
+    type = TravelsDestinationsActionsTypes.VOTE_DOWN;
+    constructor(public destination: TravelDestinationModel){
+        
     }
 }
 
@@ -47,7 +63,8 @@ export class ChoosenFavoriteAction implements Action{
 }
 
 //Agrupar todos los tipos de datos de las acciones de mi modulo
-export type TravelsDestinationActions = NewDestinationAction | ChoosenFavoriteAction;
+export type TravelsDestinationActions = NewDestinationAction | ChoosenFavoriteAction
+    | VoteUpAction | VoteDownAction;
 
 //Reducers
 
@@ -72,6 +89,19 @@ export function reducerTravelsDestinations(
                 favorite: fav
             };
         }
+
+        case TravelsDestinationsActionsTypes.VOTE_UP: {
+            const dest: TravelDestinationModel = (action as VoteUpAction).destination;
+            dest.voteUp();
+            return { ...state }; //Clono
+        }
+
+        case TravelsDestinationsActionsTypes.VOTE_DOWN: {
+            const dest: TravelDestinationModel = (action as VoteDownAction).destination;
+            dest.voteDown();
+            return { ...state }; //Clono
+        }
+        
     }
     return state;
 }

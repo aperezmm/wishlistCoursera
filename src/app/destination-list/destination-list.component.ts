@@ -14,20 +14,22 @@ export class DestinationListComponent implements OnInit {
 
   @Output() onItemAdded: EventEmitter<TravelDestinationModel>;
   updates: string[];
+  all;
 
   constructor(public destinationApiClient: DestinationApiClient, public store: Store<AppState>) {
     this.onItemAdded = new EventEmitter();
     this.updates = [];
+    this.store.select(state => state.destinations.favorite)
+      .subscribe(d => {
+        if(d != null) {
+          this.updates.push("You have been choosen: " + d.name);
+        }
+      });
+      store.select(state => state.destinations.items).subscribe(items => this.all = items);
   }
 
   ngOnInit() {
-    this.store.select(state => state.destinations)
-      .subscribe(data => {
-        let d = data.favorite;
-        if(d != null) {
-          this.updates.push("You have been choosen:" + d.name);
-        }
-      });
+    
   }
 
   //GUARDAR EL DESTINO EN LA CARD
@@ -41,6 +43,10 @@ export class DestinationListComponent implements OnInit {
   chosenDestination(desti: TravelDestinationModel){
     this.destinationApiClient.choose(desti); //Le pasamos la responsabilidad a destinationApiClient
     //this.store.dispatch(new ChoosenFavoriteAction(desti));
+  }
+
+  getAll(){
+
   }
 
 

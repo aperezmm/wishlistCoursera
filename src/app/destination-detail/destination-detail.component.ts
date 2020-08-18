@@ -15,8 +15,9 @@ export class DestinationDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private destinationApiClient: DestinationApiClient) { }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.destination = this.destinationApiClient.getById(id);
+    const id = this.route.snapshot.paramMap.get('id');
+    this.destination = null; 
+    //destinationApiClient.getById(id);
   }
 
 }

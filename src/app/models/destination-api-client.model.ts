@@ -8,32 +8,21 @@ import { TravelsDestinationsState,
 import {AppState} from './../app.module';
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable() 
 export class DestinationApiClient {
-    destinations: TravelDestinationModel[]=[];
+   // destinations: TravelDestinationModel[]=[];
 
     //Se le pasa al constructor BehaviorSubject el valor por defecto.
    // current: Subject<TravelDestinationModel> = new BehaviorSubject<TravelDestinationModel>(null);
 
-    constructor(public store: Store<AppState>){
-        this.store
-            .select(state => state.destinations)
-            .subscribe((data) => {
-                console.log("destinations sub store");
-                console.log(data);
-                this.destinations = data.items;
-            });
-        this.store
-            .subscribe((data) => {
-                console.log("all store");
-                console.log(data);
-            });            
+    constructor(public store: Store<AppState>){           
     }
 
     add(dest: TravelDestinationModel){
         this.store.dispatch(new NewDestinationAction(dest));
     }
 
+    /*
     getById(id: string):TravelDestinationModel{
         return this.destinations.filter(function(dest){
             return dest.id.toString() == id;
@@ -43,6 +32,7 @@ export class DestinationApiClient {
     getAll():TravelDestinationModel[] {
         return this.destinations;
     }
+    */
 
     choose(dest: TravelDestinationModel){
         this.store.dispatch(new ChoosenFavoriteAction(dest));

@@ -5,7 +5,7 @@ export class TravelDestinationModel {
     public services: string[];
     id = uuid();
 
-    constructor(public name:string, public url:string){
+    constructor(public name:string, public url:string, public votes:number = 0){
         this.services = ['Turco', 'Sauna', 'Jacuzzi'];
     }
 
@@ -16,5 +16,13 @@ export class TravelDestinationModel {
 
     setSelected(is: boolean) {
         this.selected = is;
+    }
+
+    voteUp(){
+        this.votes++;
+    }
+
+    voteDown(){
+        this.votes--;
     }
 }
