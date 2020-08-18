@@ -19,8 +19,8 @@ export const initializeTravelsDestinationsState = function() {
         items: [],
         loading: false,
         favorite: null
-    };
-};
+    }
+}
 
 //Actions
 //Disparan un cambio de estado
@@ -31,7 +31,7 @@ export enum TravelsDestinationsActionsTypes {
 }
 
 //Estructura de dato destino nuevo
-export class NewDestinationAction implements Action{
+export class NewDestinationAction implements Action {
     type = TravelsDestinationsActionsTypes.NEW_DESTINATION;
     constructor(public destination: TravelDestinationModel){
 
@@ -65,7 +65,7 @@ export function reducerTravelsDestinations(
         }
         case TravelsDestinationsActionsTypes.CHOOSEN_FAVORITE: {
             state.items.forEach(x => x.setSelected(false));
-            const fav: TravelDestinationModel = (action as ChoosenFavoriteAction).destination;
+            let fav: TravelDestinationModel = (action as ChoosenFavoriteAction).destination;
             fav.setSelected(true);
             return {
                 ...state,

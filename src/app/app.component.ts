@@ -11,5 +11,10 @@ export class AppComponent {
   time = new Observable(observer => {
     //Le importa es cuando se llama al metodo
     setInterval(() => observer.next(new Date().toString()), 1000);
+    return null;
   });
+
+  destinationAdded(d){
+    //alert(d.name);
+  }
 }

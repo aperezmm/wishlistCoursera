@@ -39,7 +39,7 @@ export class FormsDestinationTravelComponent implements OnInit {
 
     this.fg.controls['name'].valueChanges.subscribe(
       (value: string) => {
-        console.log('name changed:', value)
+        console.log('name changed:', value);
       }
     );
   } 
@@ -57,8 +57,11 @@ export class FormsDestinationTravelComponent implements OnInit {
         //consultamos un archivo de texto estatico.
         //le pasamos el texto de busquedad 
       
-      ).subscribe(AjaxResponse => {
-        this.searchResults = AjaxResponse.response;
+      ).subscribe(ajaxResponse => {
+        this.searchResults = ajaxResponse.response
+        .filter(function(x){
+          return x.toLowerCase().includes(elemName.value.toLowerCase());
+        });
       });
   }
 
@@ -84,11 +87,11 @@ export class FormsDestinationTravelComponent implements OnInit {
 
   nameValidatorParametrizable(minLength: number): ValidatorFn {  //Contando la cantidad de caracteres
     return (control: FormControl): { [s:string]: boolean } | null => {
-      const length = control.value.toString().trim().length; //Length
+      let length = control.value.toString().trim().length; //Length
       if(length > 0 && length < minLength ){
-        return {minLengthName: true};
+        return {'minLengthName': true};
       }
       return null //Retornamos null por defecto
-    }
+    };
   }
 }

@@ -10,19 +10,22 @@
         <!--
             <div *ngIf="fg.controls['name'].hasError('invalidName')"><em>- Invalid name!</em></div>
         -->        
-        <div *ngIf="fg.controls['name'].hasError('minLengthName')"><em>- Minimum {{minLength}} characters for name!</em></div>
-        <div *ngIf="fg.controls['name'].hasError('required')"><em>- Required name!</em></div>
+        <div *ngIf="fg.controls['name'].hasError('minLengthName')"
+            class="alert alert-danger" role="alert"><em>- Minimum {{minLength}} characters for name!</em></div>
+        <div *ngIf="fg.controls['name'].hasError('required')"
+            class="alert alert-danger" role="alert"><em>- Required name!</em></div>
         <br>
         <input type="text" class="form-control" id="name" placeholder="Enter your destination..."
             [formControl]="fg.controls['name']">
         <ul>
-            <li *ngFor="let r of searchResults">{{r}}</li>
-        </ul>
-            
+            <li *ngFor="let r of searchResults;">{{r}}</li>
+        </ul>            
     </div>
+
     <div class="form-group">
         <label for="url"><strong>Image URL</strong></label>
-        <div *ngIf="fg.controls['url'].hasError('required')"><em>- Required URL</em></div>
+        <div *ngIf="fg.controls['url'].hasError('required')"
+            class="alert alert-danger" role="alert"><em>- Required URL</em></div>
         <br>
         <input type="text" class="form-control" id="url"
             placeholder="Example: https://wallpapercave.com/wp/wp1844656.jpg " 
