@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { TravelDestinationModel } from '../models/travel-destination.model';
-import { DestinationApiClient } from '../models/destination-api-client.model';
+import { TravelDestinationModel } from '../../models/travel-destination.model';
+import { DestinationApiClient } from './../../models/destination-api-client.model';
 import { Store, State } from '@ngrx/store';
-import { AppState } from '../app.module';
-import { NewDestinationAction, ChoosenFavoriteAction } from '../models/travel-destination-state.model';
+import { AppState } from '../../app.module';
+import { NewDestinationAction, ChoosenFavoriteAction } from '../../models/travel-destination-state.model';
 
 @Component({
   selector: 'app-destination-list',
