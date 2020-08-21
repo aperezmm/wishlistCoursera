@@ -21,7 +21,11 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login/login.component';
 import { ProtectedComponent } from './components/protected/protected/protected.component';
 import { AuthService } from './services/auth.service';
-import { UserLoginGuard } from './guards/user-login/user-login.guard'
+import { UserLoginGuard } from './guards/user-login/user-login.guard';
+import { FlightsComponent } from './components/flights/flights.component';
+import { FlightsMainComponent } from './components/flights-main/flights-main.component';
+import { FlightsDetailComponent } from './components/flights-detail/flights-detail.component';
+import { FlightsInfoComponent } from './components/flights-info/flights-info.component'
 
 //Redux init
 export interface AppState { //Estado global de la aplicación.
@@ -49,7 +53,11 @@ const reducersInitialState = {
     DestinationDetailComponent,
     FormsDestinationTravelComponent,
     LoginComponent,
-    ProtectedComponent
+    ProtectedComponent,
+    FlightsComponent,
+    FlightsMainComponent,
+    FlightsDetailComponent,
+    FlightsInfoComponent
   ],
   imports: [
     BrowserModule,
