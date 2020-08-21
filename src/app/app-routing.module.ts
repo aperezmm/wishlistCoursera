@@ -4,11 +4,19 @@ import { DestinationListComponent } from './components/destination-list/destinat
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 import { Route} from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { LoginComponent } from './components/login/login/login.component';
+import { ProtectedComponent } from './components/protected/protected/protected.component';
+import { UserLoginGuard } from './guards/user-login/user-login.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: DestinationListComponent},
-  { path: 'destination/:id', component: DestinationDetailComponent}
+  { path: 'destination/:id', component: DestinationDetailComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'protected',
+    component: ProtectedComponent,
+    canActivate: [UserLoginGuard] //Para controlar que este log
+    }
 ];
 
 @NgModule({

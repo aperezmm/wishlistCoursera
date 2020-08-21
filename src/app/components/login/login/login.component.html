@@ -1,1 +1,17 @@
-<p>login works!</p>
+<form action="" class="form-inline" *ngIf="!authService.getUser()"> <!--Si no esta log, se muestra-->
+    <!-- Condicion !authService.getUser(), excluyente, si es falso se muestra todo el formulario-->
+    <div class="form-group">
+        <label for="username">USERNAME : <em style="color: darkgray;"> user</em></label>
+        <input type="text" name="username" id="" class="form-control" #username>
+    </div>
+    
+    <div class="form-group">
+        <label for="password">PASSWORD : <em style="color: darkgray;"> password</em></label>
+        <input type="password" name="password" id="" #password class="form-control">
+    </div>
+
+    <a href="" class="btn btn-dark" (click)="login(username.value, password.value)">LOG IN!</a>
+    {{messageError}}
+</form>
+<a href="" class="btn btn-dark" (click)="logout()" *ngIf="authService.getUser()">LOG OUT</a>
+<!--Si esta logeado se muestra, si hay un resultado verdadero de usuario se muestra el logout-->

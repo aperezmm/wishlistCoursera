@@ -20,6 +20,8 @@ import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login/login.component';
 import { ProtectedComponent } from './components/protected/protected/protected.component';
+import { AuthService } from './services/auth.service';
+import { UserLoginGuard } from './guards/user-login/user-login.guard'
 
 //Redux init
 export interface AppState { //Estado global de la aplicación.
@@ -59,7 +61,9 @@ const reducersInitialState = {
     StoreDevtoolsModule.instrument()
   ],
   providers: [
-    DestinationApiClient
+    DestinationApiClient,
+    AuthService,
+    UserLoginGuard
   ],
   bootstrap: [AppComponent]
 })
