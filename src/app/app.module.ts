@@ -25,7 +25,8 @@ import { UserLoginGuard } from './guards/user-login/user-login.guard';
 import { FlightsComponent } from './components/flights/flights.component';
 import { FlightsMainComponent } from './components/flights-main/flights-main.component';
 import { FlightsDetailComponent } from './components/flights-detail/flights-detail.component';
-import { FlightsInfoComponent } from './components/flights-info/flights-info.component'
+import { FlightsInfoComponent } from './components/flights-info/flights-info.component';
+import { ReservationsModule } from './reservations/reservations.module'
 
 //Redux init
 export interface AppState { //Estado global de la aplicación.
@@ -66,7 +67,8 @@ const reducersInitialState = {
     AppRoutingModule,
     NgRxStoreModule.forRoot(reducers, { initialState: reducersInitialState }), //Registramos los reducers
     EffectsModule.forRoot([TravelsDestinationsEffects]),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    ReservationsModule
   ],
   providers: [
     DestinationApiClient,
