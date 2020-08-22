@@ -8,7 +8,8 @@ import { NewDestinationAction, ChoosenFavoriteAction } from '../../models/travel
 @Component({
   selector: 'app-destination-list',
   templateUrl: './destination-list.component.html',
-  styleUrls: ['./destination-list.component.css']
+  styleUrls: ['./destination-list.component.css'],
+  providers: [DestinationApiClient] //Proveedor del destinationApiClient
 })
 export class DestinationListComponent implements OnInit {
 

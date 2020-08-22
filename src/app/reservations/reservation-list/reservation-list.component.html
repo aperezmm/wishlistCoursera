@@ -1,4 +1,10 @@
-<p>reservation-list works!</p>
 |
 <a [routerLink]="['./', 10]">Details of reservation</a> |<!-- Ruta relativa -->
 <a [routerLink]="['/login']"> Login </a> |
+<hr>
+<p>reservation-list component works!</p>
+<div *ngFor="let reservation of api.getAll()">
+    <strong>Codigo de la reserva <em style="color: darkred;">{{reservation.id}}</em> | 
+        Destino: <em style="color: darkred;">{{reservation.destination}}</em></strong>
+    <!-- {{reservation.id}} - {{reservation.name}} -->
+</div>

@@ -8,7 +8,7 @@ import { DestinationComponent } from './components/destination/destination.compo
 import { DestinationListComponent } from './components/destination-list/destination-list.component';
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 import { FormsDestinationTravelComponent } from './components/forms-destination-travel/forms-destination-travel.component';
-import { DestinationApiClient } from './models/destination-api-client.model';
+//import { DestinationApiClient } from './models/destination-api-client.model';
 import { TravelsDestinationsState, 
   reducerTravelsDestinations, 
   initializeTravelsDestinationsState, 
@@ -71,7 +71,7 @@ const reducersInitialState = {
     ReservationsModule
   ],
   providers: [
-    DestinationApiClient,
+    //DestinationApiClient,
     AuthService,
     UserLoginGuard
   ],

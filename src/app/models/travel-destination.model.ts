@@ -1,6 +1,7 @@
 import { v4 as uuid} from 'uuid';
 
 export class TravelDestinationModel {
+    
     public selected: boolean;
     public services: string[];
     id = uuid();
