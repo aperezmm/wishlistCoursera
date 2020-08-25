@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +26,20 @@ import { FlightsComponent } from './components/flights/flights.component';
 import { FlightsMainComponent } from './components/flights-main/flights-main.component';
 import { FlightsDetailComponent } from './components/flights-detail/flights-detail.component';
 import { FlightsInfoComponent } from './components/flights-info/flights-info.component';
-import { ReservationsModule } from './reservations/reservations.module'
+import { ReservationsModule } from './reservations/reservations.module';
+
+//App config
+export interface AppConfig {
+  apiEndPoint: String;
+}
+
+const APP_CONFIG_VALUE: AppConfig = {
+  apiEndPoint: 'http://localhost:3000'
+};
+
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+//Fin app config 
+
 
 //Redux init
 export interface AppState { //Estado global de la aplicación.
@@ -73,7 +86,9 @@ const reducersInitialState = {
   providers: [
     //DestinationApiClient,
     AuthService,
-    UserLoginGuard
+    UserLoginGuard,
+    //Agregamos el provider para un injectionToken
+    { provide: APP_CONFIG, useValue: APP_CONFIG_VALUE}
   ],
   bootstrap: [AppComponent]
 })

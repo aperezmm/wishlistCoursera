@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject, forwardRef } from '@angular/core';
 import { TravelDestinationModel } from '../../models/travel-destination.model';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, Form } from '@angular/forms';
 import { fromEvent } from 'rxjs';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { APP_CONFIG, AppConfig } from 'src/app/app.module';
 
 @Component({
   selector: 'app-forms-destination-travel',
@@ -18,7 +19,7 @@ export class FormsDestinationTravelComponent implements OnInit {
   minLength = 3;
   searchResults: string[];
 
-  constructor(fb: FormBuilder) { 
+  constructor(fb: FormBuilder, @Inject(forwardRef(() => APP_CONFIG)) private config: AppConfig) { 
     this.onItemAdded = new EventEmitter();
     this.fg = fb.group({
       //Definimos estructura del formulario
@@ -49,20 +50,12 @@ export class FormsDestinationTravelComponent implements OnInit {
     //subscribirno cuando nos presionan tecla
     fromEvent(elemName, 'input') //Pipe sirve para operaciones en serie
       .pipe(
-        map((e: KeyboardEvent) => (e.target as HTMLInputElement).value), //Cada evento del teclado tiene un target
-        filter(text => text.length > 2), //Entra ese string si tiene más de 2 caracteres
-        debounceTime(200),
-        distinctUntilChanged(),
-        switchMap(() => ajax('/assets/datos.json')) //Como webserver
-        //consultamos un archivo de texto estatico.
-        //le pasamos el texto de busquedad 
-      
-      ).subscribe(ajaxResponse => {
-        this.searchResults = ajaxResponse.response
-        .filter(function(x){
-          return x.toLowerCase().includes(elemName.value.toLowerCase());
-        });
-      });
+          map((e: KeyboardEvent) => (e.target as HTMLInputElement).value), //Cada evento del teclado tiene un target
+          filter(text => text.length > 2), //Entra ese string si tiene más de 2 caracteres
+          debounceTime(200),
+          distinctUntilChanged(),
+          switchMap((text: string) => ajax(this.config.apiEndPoint + '/cities?q=' + text))
+        ).subscribe(ajaxResponse => this.searchResults = ajaxResponse.response);
   }
 
   saveDestination(name: string, url: string):boolean{
