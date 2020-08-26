@@ -4,6 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TravelDestinationModel } from './travel-destination.model';
+import { HttpClientModule } from '@angular/common/http';
 
 //State
 
@@ -14,13 +15,22 @@ export interface TravelsDestinationsState {
     favorite: TravelDestinationModel;
 }
 
+export function initializeTravelsDestinationsState(){
+    return {
+        items: [],
+        loading: false,
+        favorite: null
+    };
+}
+
+/*
 export const initializeTravelsDestinationsState = function() {
     return {
         items: [],
         loading: false,
         favorite: null
     }
-}
+}*/
 
 //Actions
 //Disparan un cambio de estado
@@ -29,7 +39,8 @@ export enum TravelsDestinationsActionsTypes {
     NEW_DESTINATION = '[Travels Destinations] NEW',
     CHOOSEN_FAVORITE = '[Travels Destinations] FAVORITE',
     VOTE_UP = '[Travels Destinations] VOTE UP',
-    VOTE_DOWN = '[Travels Destinations] VOTE DOWN' 
+    VOTE_DOWN = '[Travels Destinations] VOTE DOWN',
+    INIT_MY_DATA = '[Travels Destinations] INIT MY DATA' 
 }
 
 //Estructura de dato destino nuevo
@@ -54,6 +65,13 @@ export class VoteDownAction implements Action {
     }
 }
 
+export class InitMyDataAction implements Action {
+    type = TravelsDestinationsActionsTypes.INIT_MY_DATA;
+    constructor(public  destinations: string[]){
+
+    }
+}
+
 //Estructura de dato destino elegido 
 export class ChoosenFavoriteAction implements Action{
     type = TravelsDestinationsActionsTypes.CHOOSEN_FAVORITE;
@@ -64,7 +82,7 @@ export class ChoosenFavoriteAction implements Action{
 
 //Agrupar todos los tipos de datos de las acciones de mi modulo
 export type TravelsDestinationActions = NewDestinationAction | ChoosenFavoriteAction
-    | VoteUpAction | VoteDownAction;
+    | VoteUpAction | VoteDownAction | InitMyDataAction;
 
 //Reducers
 
@@ -74,6 +92,15 @@ export function reducerTravelsDestinations(
     action: TravelsDestinationActions
 ): TravelsDestinationsState {
     switch(action.type) {
+
+        case TravelsDestinationsActionsTypes.INIT_MY_DATA: {
+            const destinations: string[] = (action as InitMyDataAction).destinations;
+            return {
+                ...state, 
+                items: destinations.map((dest) => new TravelDestinationModel(dest, ''))
+            }; 
+        }
+
         case TravelsDestinationsActionsTypes.NEW_DESTINATION: {
             return {
                 ...state,

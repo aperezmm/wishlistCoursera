@@ -1,21 +1,33 @@
 <body>
-  <div class="container content">
+  <div class="page-header">
+    <div style="float:right;">
+      <b [innerHTML]="'TRADUCIR' | translate"></b>
+      <select class="caja" name="#" id="#" (change)="translate.use($event.target.value)">
+        <option value="es">Español</option>
+        <option value="fr">France</option>
+        <option value="en">English</option>
+      </select>
+    </div>
 
-    <div class="page-header">
-      <div class="container">
+    <div class="container">
         <div class="navLinks">
           <a [routerLink]="['/home']">Home</a>
           -
           <a [routerLink]="['/destination-detail']">Destination Detail</a>
       </div>
-      </div>
     </div>
-
-    <div class="row">
-    <hr>
-    </div>
-    <router-outlet></router-outlet>
   </div>
+
+  <div class="container content">
+    <div class="row">
+      <h1>
+        <!-- <b [innerHTML]="'TRADUCIR' | translate"></b> -->
+      </h1>
+    <hr>
+    </div>    
+  </div>
+
+  <router-outlet></router-outlet>
 
   <hr class="mb-5">
 

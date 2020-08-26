@@ -14,6 +14,7 @@ import { FlightsInfoComponent } from './components/flights-info/flights-info.com
 import { FlightsDetailComponent } from './components/flights-detail/flights-detail.component';
 import { FlightsComponent } from './components/flights/flights.component';
 
+//Init routing
 export const childrenRoutesFlights: Routes = [ //Conjunto de rutas adicionales
   { path: '', redirectTo: 'main', pathMatch: 'full'},
   { path: 'main', component: FlightsMainComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
     children: childrenRoutesFlights
   }
 ];
+//End routing
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)], //Vinculamos las rutas

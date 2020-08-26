@@ -17,6 +17,12 @@ var myDestinations = [];
 app.get("/my", (req, res, next) => res.json(myDestinations));
 app.post("/my", (req, res, next) => {
     console.log(req.body);
-    myDestinations = req.body;
+
+    //new lo tenemos en DestinoApiClient
+    myDestinations.push(req.body.new);
     res.json(myDestinations);
 });
+
+app.get("/api/translation",(req, res, next) => res.json([
+    {lang: req.query.lang, key: 'TRADUCIR', value: 'TRADUCIR ' + req.query.lang}
+]));
