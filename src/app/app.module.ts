@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, InjectionToken, APP_INITIALIZER, Injectable } from '@angular/core';
+import { NgModule, InjectionToken, APP_INITIALIZER, Injectable, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,10 @@ import { DestinationListComponent } from './components/destination-list/destinat
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 import { FormsDestinationTravelComponent } from './components/forms-destination-travel/forms-destination-travel.component';
 import { HttpClientModule, HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
+
+//import ngx-mapbox-gl
+// import { MAPBOX_API_KEY, NgxMapboxGLModule } from 'ngx-mapbox-gl';
+
 
 import  Dexie  from 'dexie';
 
@@ -37,6 +41,10 @@ import { async } from 'rxjs/internal/scheduler/async';
 import { TravelDestinationModel } from './models/travel-destination.model';
 import { Observable, from } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
+
+export interface IMyLibMapModuleConfig {
+  mapboxToken: string;
+}
 
 //App config
 export interface AppConfig {
@@ -221,3 +229,5 @@ function HttpLoaderFactory(http: HttpClient){
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

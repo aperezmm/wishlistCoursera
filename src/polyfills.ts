@@ -55,7 +55,11 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
+(window as any).global = window;
+(mapboxgl as any).accessToken = 'pk.eyJ1IjoiYXBlcmV6bW0iLCJhIjoiY2tlZGtpeW81MDM4czJybzl4aGZjY2tleiJ9.sYxcTPJqFEf616V7pP99Qw';
+
 import 'zone.js/dist/zone';  // Included with Angular CLI.
+import * as mapboxgl from 'mapbox-gl';
 
 
 /***************************************************************************************************
