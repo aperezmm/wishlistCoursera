@@ -1,4 +1,4 @@
-<div class="card-content">
+<div class="card-content" [@isFavorite]="destination.isSelected()? 'stateFavorite' : 'stateNoFavorite'">
   <div class="card-img">
     <img src={{destination.url}} alt="">
     <span>
@@ -8,7 +8,7 @@
   <div class="card-desc">
     <h3>{{destination.name}}</h3>
     <p>Services</p>
-    <em style="color: rgb(233, 108, 108);">The most outstanding!</em>
+    <em style="color: rgb(250, 171, 171);">The most outstanding!</em>
     <ul>
       <li *ngFor="let service of destination.services">
         <!-- <span>{{service}}</span> -->

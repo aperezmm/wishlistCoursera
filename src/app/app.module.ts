@@ -9,6 +9,7 @@ import { DestinationListComponent } from './components/destination-list/destinat
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 import { FormsDestinationTravelComponent } from './components/forms-destination-travel/forms-destination-travel.component';
 import { HttpClientModule, HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //import ngx-mapbox-gl
 // import { MAPBOX_API_KEY, NgxMapboxGLModule } from 'ngx-mapbox-gl';
@@ -214,7 +215,8 @@ function HttpLoaderFactory(http: HttpClient){
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     //DestinationApiClient,
