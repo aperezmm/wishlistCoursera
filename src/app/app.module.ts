@@ -42,6 +42,7 @@ import { async } from 'rxjs/internal/scheduler/async';
 import { TravelDestinationModel } from './models/travel-destination.model';
 import { Observable, from } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
+import { SpyOnMeDirective } from './spy-on-me.directive';
 
 export interface IMyLibMapModuleConfig {
   mapboxToken: string;
@@ -197,7 +198,8 @@ function HttpLoaderFactory(http: HttpClient){
     FlightsComponent,
     FlightsMainComponent,
     FlightsDetailComponent,
-    FlightsInfoComponent
+    FlightsInfoComponent,
+    SpyOnMeDirective
   ],
   imports: [
     BrowserModule,

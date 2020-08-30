@@ -23,8 +23,12 @@
     <hr class="mb-5">
 
     <div class="row row-flex">
-      <app-destination *ngFor="let desti of all; let i = index" [destination]="desti"
-        [idx]="i" (onClicked)="chosenDestination(desti)"></app-destination>
+      <app-destination *ngFor="let desti of all; let i = index" 
+                        [destination]="desti"
+                        [idx]="i" 
+                        (onClicked)="chosenDestination(desti)"
+                        appSpyOnMe 
+                        ></app-destination>
       <!-- $event, pasemos como argumento lo que le este llegando através del eventEmitter 
         aquí, podríamos usar el destination, ya que ese es mismo que vamos a usar. -->
     </div>
