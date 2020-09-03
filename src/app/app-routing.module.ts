@@ -45,6 +45,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)], //Vinculamos las rutas
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
 
 declare module "@angular/core" {
